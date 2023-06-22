@@ -1,8 +1,7 @@
 package com.example.board.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +10,7 @@ import lombok.Setter;
 public class Board {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -26,6 +26,14 @@ public class Board {
     @Column(name = "filePath")
     private String filePath;
 
+
+    @Builder
+    public Board(String title, String content, String fileName, String filePath){
+        this.title = title;
+        this.content = content;
+        this.fileName = fileName;
+        this.filePath = filePath;
+    }
 
 
 }
